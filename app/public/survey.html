@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Survey</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Your Besfriend!</h4>
+                    </div>
+                    <div class="modal-body" id="bestfriendphoto">
+                        <p>Your closest match is:</p>
+                        <p id="match"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            <h2 class="text-center">Friend Finder Survey</h2>
+            <br>
+            <p>Please fill the FriendFinder survey by choosing a number between 1-5 that indicates
+                how much you agree with each statement. 1 means strongly disagree while 5 means strongly agree.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="form-main">
+                        <h6>Name</h6>
+                        <input type="text" id="name" class="form-control" required>
+                        <br>
+                        <h6>Link to your photo image.</h6>
+                        <input type="text" id="photo" class="form-control" required>
+                        <br>
+                        <h5>Survey Questions</h5>
+                        <label for="surveyQ1">1. I love dogs.</label>
+                        <select class="form-control" id="surveyQ1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">2. I prefer having a night in rather than going to a party.</label>
+                        <select class="form-control" id="surveyQ2">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">3. I am an avid TV show consumer.</label>
+                        <select class="form-control" id="surveyQ3">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">4. I'd rather suffer hot temperatures over cold temperatures.</label>
+                        <select class="form-control" id="surveyQ4">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">5. I habitually drink alcohol.</label>
+                        <select class="form-control" id="surveyQ5">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">6. I would call myself a bookworm.</label>
+                        <select class="form-control" id="surveyQ6">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">7. I take off my shoes in the house.</label>
+                        <select class="form-control" id="surveyQ7">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">8. Moving and exercise are important aspects of my life.</label>
+                        <select class="form-control" id="surveyQ8">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">9. Cats are evil.</label>
+                        <select class="form-control" id="surveyQ9">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+
+                        <label for="surveyQ1">10. I would spend more money on food than clothes.</label>
+                        <select class="form-control" id="surveyQ10">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" data-toggle="modal"
+                        data-target="#myModal">Submit</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
+    // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
+    // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
+    // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
+
+    $(".btn").on("click", function (event) {
+        event.preventDefault();
+
+        // Here we grab the form elements
+        let newSurveyResults = {
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            scores: [$("#surveyQ1").val(), $("#surveyQ2").val(), $("#surveyQ3").val(), $("#surveyQ4").val(), $("#surveyQ5").val(), $("#surveyQ6").val(), $("#surveyQ7").val(), $("#surveyQ8").val(), $("#surveyQ9").val(), $("#surveyQ10").val()]
+        };
+
+        console.log(newSurveyResults);
+
+        // This line is the magic. It"s very similar to the standard ajax function we used.
+        // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+        // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+        // depending on if a tables is available or not.
+
+        $.post("/api/friends", newSurveyResults,
+            function (data) {
+
+                console.log("data: " + data);
+                // // Clear the form when submitting
+                // $("#reserve-name").val("");
+                // $("#reserve-phone").val("");
+                // $("#reserve-email").val("");
+                // $("#reserve-unique-id").val("");
+                $("#match").text(data.name);
+                $("#bestfriendphoto").append(`<img src="${data.photo}"/>`);
+            });
+
+    });
+
+</script>
